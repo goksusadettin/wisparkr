@@ -16,7 +16,7 @@ export const CONTACT = {
 export const SOCIAL = {
   instagram: "https://instagram.com/wisparkr",
   linkedin: "https://www.linkedin.com/company/122353984/",
-  twitter: "https://x.com/wisparkr",
+  twitter: "https://x.com/wisparkr45828",
   youtube: "https://youtube.com/@wisparkr",
 };
 
