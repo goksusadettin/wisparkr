@@ -53,7 +53,7 @@ ${message}
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        from: "Wisparkr Form <onboarding@resend.dev>",
+        from: "Wisparkr Form <info@wisparkr.com>",
         to: ["novateknoloji3@gmail.com"],
         subject: `Yeni Görüşme Talebi: ${name} — ${service}`,
         text: emailBody,
