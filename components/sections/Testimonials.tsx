@@ -19,12 +19,14 @@ export default function Testimonials() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const supabase = createClient();
-    supabase
-      .from("reviews")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data }) => { if (data) setReviews(data); });
+    try {
+      const supabase = createClient();
+      supabase
+        .from("reviews")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .then(({ data }) => { if (data) setReviews(data); });
+    } catch {}
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

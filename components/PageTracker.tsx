@@ -9,13 +9,14 @@ export default function PageTracker() {
 
   useEffect(() => {
     if (pathname.startsWith("/admin")) return;
-
-    const supabase = createClient();
-    supabase.from("page_views").insert({
-      path: pathname,
-      referrer: document.referrer || null,
-      user_agent: navigator.userAgent,
-    });
+    try {
+      const supabase = createClient();
+      supabase.from("page_views").insert({
+        path: pathname,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+      });
+    } catch {}
   }, [pathname]);
 
   return null;
