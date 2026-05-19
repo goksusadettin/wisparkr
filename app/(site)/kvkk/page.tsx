@@ -24,7 +24,7 @@ export default function KvkkPage() {
             },
             {
               title: "İşlenen Kişisel Veriler",
-              content: `Ad-soyad, e-posta adresi, telefon numarası, şirket bilgisi ve iletişim formları aracılığıyla iletilen mesaj içerikleri işlenmektedir.`,
+              content: `Ad-soyad, e-posta adresi, telefon numarası ve iletişim formları aracılığıyla iletilen mesaj içerikleri işlenmektedir.`,
             },
             {
               title: "Kişisel Veri İşlemenin Amaçları",

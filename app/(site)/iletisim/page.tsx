@@ -100,10 +100,6 @@ function ContactForm() {
           <label className="block text-label-sm text-on-surface-variant mb-2">Telefon</label>
           <input {...register("phone")} placeholder="+90 555 000 00 00" className={inputClass} />
         </div>
-        <div>
-          <label className="block text-label-sm text-on-surface-variant mb-2">Şirket</label>
-          <input {...register("company")} placeholder="Şirket adı" className={inputClass} />
-        </div>
       </div>
 
       <div>
