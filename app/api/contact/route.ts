@@ -54,7 +54,7 @@ ${message}
       },
       body: JSON.stringify({
         from: "Wisparkr Form <info@wisparkr.com>",
-        to: ["novateknoloji3@gmail.com"],
+        to: ["info@wisparkr.com"],
         subject: `Yeni Görüşme Talebi: ${name} — ${service}`,
         text: emailBody,
         reply_to: email,

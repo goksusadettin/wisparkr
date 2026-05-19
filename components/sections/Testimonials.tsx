@@ -2,38 +2,52 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { createClient } from "@/lib/supabase/client";
 
 interface Review {
+  id: string;
   name: string;
   message: string;
-  date: string;
+  created_at: string;
 }
 
 export default function Testimonials() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const supabase = createClient();
 
   useEffect(() => {
-    const stored = localStorage.getItem("wisparkr_reviews");
-    if (stored) setReviews(JSON.parse(stored));
+    supabase
+      .from("reviews")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .then(({ data }) => { if (data) setReviews(data); });
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
+    setSending(true);
 
-    const newReview: Review = {
-      name: name.trim(),
-      message: message.trim(),
-      date: new Date().toLocaleDateString("tr-TR"),
-    };
+    const { data, error } = await supabase
+      .from("reviews")
+      .insert({ name: name.trim(), message: message.trim() })
+      .select()
+      .single();
 
-    const updated = [newReview, ...reviews];
-    setReviews(updated);
-    localStorage.setItem("wisparkr_reviews", JSON.stringify(updated));
-    setName("");
-    setMessage("");
+    if (!error && data) {
+      setReviews((prev) => [data, ...prev]);
+      setName("");
+      setMessage("");
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 3000);
+    }
+
+    setSending(false);
   };
 
   return (
@@ -76,11 +90,15 @@ export default function Testimonials() {
             className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary/50 transition-colors resize-none"
             required
           />
+          {success && (
+            <p className="text-green-400 text-sm text-center">Yorumunuz başarıyla gönderildi!</p>
+          )}
           <button
             type="submit"
-            className="w-full py-3 rounded-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-0.5 transition-all duration-200"
+            disabled={sending}
+            className="w-full py-3 rounded-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Yorumu Gönder
+            {sending ? "Gönderiliyor..." : "Yorumu Gönder"}
           </button>
         </div>
       </motion.form>
@@ -90,7 +108,7 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review, i) => (
             <motion.div
-              key={i}
+              key={review.id}
               className="glass p-6 rounded-3xl border border-white/5 flex flex-col"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -107,7 +125,9 @@ export default function Testimonials() {
                   </div>
                   <p className="text-on-surface font-semibold text-sm">{review.name}</p>
                 </div>
-                <p className="text-on-surface-variant text-xs">{review.date}</p>
+                <p className="text-on-surface-variant text-xs">
+                  {new Date(review.created_at).toLocaleDateString("tr-TR")}
+                </p>
               </div>
             </motion.div>
           ))}
