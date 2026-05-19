@@ -17,16 +17,27 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError("");
 
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-    if (error) {
-      setError("E-posta veya şifre hatalı.");
+      if (error) {
+        setError(`Hata: ${error.message}`);
+        setLoading(false);
+        return;
+      }
+
+      if (!data.session) {
+        setError("Oturum oluşturulamadı, lütfen tekrar deneyin.");
+        setLoading(false);
+        return;
+      }
+
+      window.location.replace("/admin");
+    } catch (err: unknown) {
+      setError(`Beklenmeyen hata: ${err instanceof Error ? err.message : String(err)}`);
       setLoading(false);
-      return;
     }
-
-    window.location.replace("/admin");
   };
 
   return (
