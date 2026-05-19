@@ -24,6 +24,7 @@ export const NAV_LINKS = [
   { label: "Anasayfa", href: "/" },
   { label: "Hizmetler", href: "/hizmetler" },
   { label: "Çalışmalarımız", href: "/calismalarimiz" },
+  { label: "Blog", href: "/blog" },
   { label: "Hakkımızda", href: "/hakkimizda" },
   { label: "İletişim", href: "/iletisim" },
 ];
@@ -85,7 +86,7 @@ export const SERVICES = [
   },
 ];
 
-export const TRUSTED_BRANDS = ["BUILDPRO", "BITWISE", "SYNCFORGE", "WAVE", "CORESAGE"];
+export const TRUSTED_BRANDS = ["NOVATEL", "DESKFLOW", "ARCONEX", "METROVIA", "SHOPLINQ", "PULSEGEN"];
 
 export const PRICING = [
   {

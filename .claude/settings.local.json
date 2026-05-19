@@ -26,7 +26,10 @@
       "Bash(npx vercel *)",
       "PowerShell(git add *)",
       "PowerShell(git commit *)",
-      "PowerShell(git push *)"
+      "PowerShell(git push *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Lenovo\\\\OneDrive\\\\Desktop\\\\wisparkr\" -Recurse -Directory)",
+      "Bash(Select-Object -First 20)",
+      "Bash(Format-Table FullName)"
     ]
   }
 }

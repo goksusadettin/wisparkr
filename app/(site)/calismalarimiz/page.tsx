@@ -35,6 +35,33 @@ const PROJECTS = [
       "HubSpot entegrasyonu ile gelen leadler otomatik puanlanıyor, doğru temsilciye anında atanıyor.",
     color: "tertiary",
   },
+  {
+    title: "E-posta Pazarlama Otomasyonu",
+    client: "Novatel",
+    category: "Email Otomasyon",
+    result: "%65 açılma oranı artışı",
+    description:
+      "Kullanıcı davranışına göre tetiklenen kişiselleştirilmiş e-posta serileri ile müşteri bağlılığı ve satış oranları ciddi ölçüde arttı.",
+    color: "primary",
+  },
+  {
+    title: "Instagram & WhatsApp Lead Toplama",
+    client: "Deskflow",
+    category: "Lead Yönetimi",
+    result: "2x daha fazla nitelikli lead",
+    description:
+      "Sosyal medya reklamlarından gelen ziyaretçiler otomatik lead formlarıyla yakalanıp CRM'e aktarıldı.",
+    color: "secondary",
+  },
+  {
+    title: "Müşteri Destek Chatbot Entegrasyonu",
+    client: "Arconex",
+    category: "AI Chatbot",
+    result: "%80 destek maliyeti düşüşü",
+    description:
+      "Sık sorulan sorular, sipariş takibi ve iade süreçleri tamamen otomatikleştirildi. Destek ekibinin yükü dramatik biçimde azaldı.",
+    color: "tertiary",
+  },
 ];
 
 const COLOR_CLASSES: Record<string, { badge: string; dot: string }> = {
