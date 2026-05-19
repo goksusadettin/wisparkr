@@ -18,9 +18,8 @@ export default function Testimonials() {
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const supabase = createClient();
-
   useEffect(() => {
+    const supabase = createClient();
     supabase
       .from("reviews")
       .select("*")
@@ -33,6 +32,7 @@ export default function Testimonials() {
     if (!name.trim() || !message.trim()) return;
     setSending(true);
 
+    const supabase = createClient();
     const { data, error } = await supabase
       .from("reviews")
       .insert({ name: name.trim(), message: message.trim() })
@@ -115,9 +115,7 @@ export default function Testimonials() {
               transition={{ delay: i * 0.08, duration: 0.4 }}
             >
               <span className="text-[40px] leading-none text-primary/20 font-serif select-none mb-2">&ldquo;</span>
-              <p className="text-body-md text-on-surface-variant italic flex-1 mb-6">
-                {review.message}
-              </p>
+              <p className="text-body-md text-on-surface-variant italic flex-1 mb-6">{review.message}</p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center text-sm font-bold text-primary shrink-0">

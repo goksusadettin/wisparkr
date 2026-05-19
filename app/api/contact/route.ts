@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
   const secret = process.env.RECAPTCHA_SECRET_KEY;
@@ -65,6 +66,14 @@ ${message}
       const err = await res.text();
       console.error("Resend hatası:", err);
       return NextResponse.json({ error: "E-posta gönderilemedi" }, { status: 500 });
+    }
+
+    // Supabase'e kaydet
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (supabaseUrl && supabaseKey) {
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      await supabase.from("contact_submissions").insert({ name, email, phone, company, service, message });
     }
 
     return NextResponse.json({ success: true });
