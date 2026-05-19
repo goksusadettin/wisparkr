@@ -23,7 +23,10 @@
       "Bash(cmdkey /delete:git:https://github.com)",
       "Bash(git commit *)",
       "Bash(npm list *)",
-      "Bash(npx vercel *)"
+      "Bash(npx vercel *)",
+      "PowerShell(git add *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git push *)"
     ]
   }
 }

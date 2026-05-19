@@ -22,9 +22,18 @@ export async function middleware(request: NextRequest) {
       }
     );
 
-    await supabase.auth.getSession();
+    const { data: { user } } = await supabase.auth.getUser();
+    const isLoginPage = request.nextUrl.pathname === "/admin/giris";
+
+    if (!isLoginPage && !user) {
+      return NextResponse.redirect(new URL("/admin/giris", request.url));
+    }
+
+    if (isLoginPage && user) {
+      return NextResponse.redirect(new URL("/admin", request.url));
+    }
   } catch {
-    // Middleware crash etmemeli — auth kontrolü sayfalarda yapılıyor
+    // Hata olursa sayfalar kendi auth kontrolünü yapıyor
   }
 
   return supabaseResponse;
