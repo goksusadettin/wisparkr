@@ -1,47 +1,118 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { TESTIMONIALS } from "@/lib/constants";
+
+interface Review {
+  name: string;
+  message: string;
+  date: string;
+}
 
 export default function Testimonials() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const stored = localStorage.getItem("wisparkr_reviews");
+    if (stored) setReviews(JSON.parse(stored));
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !message.trim()) return;
+
+    const newReview: Review = {
+      name: name.trim(),
+      message: message.trim(),
+      date: new Date().toLocaleDateString("tr-TR"),
+    };
+
+    const updated = [newReview, ...reviews];
+    setReviews(updated);
+    localStorage.setItem("wisparkr_reviews", JSON.stringify(updated));
+    setName("");
+    setMessage("");
+  };
+
   return (
     <section className="py-section-gap px-gutter max-w-container-max mx-auto">
       <motion.div
-        className="text-center mb-20"
+        className="text-center mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-h2-mobile md:text-h2 text-on-surface">Müşterilerimiz Ne Diyor?</h2>
+        <h2 className="text-h2-mobile md:text-h2 text-on-surface mb-4">Müşteri Yorumları</h2>
+        <p className="text-body-md text-on-surface-variant">Deneyimlerinizi bizimle paylaşın.</p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {TESTIMONIALS.map((item, i) => (
-          <motion.div
-            key={item.name}
-            className="glass p-8 rounded-3xl border border-white/5 relative flex flex-col"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.12, duration: 0.5 }}
+      {/* Yorum formu */}
+      <motion.form
+        onSubmit={handleSubmit}
+        className="glass border border-white/5 rounded-3xl p-8 mb-16 max-w-2xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <h3 className="text-on-surface font-semibold text-lg mb-6">Yorum Yaz</h3>
+        <div className="space-y-4">
+          <input
+            type="text"
+            placeholder="Adınız"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary/50 transition-colors"
+            required
+          />
+          <textarea
+            placeholder="Yorumunuzu yazın..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={4}
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary/50 transition-colors resize-none"
+            required
+          />
+          <button
+            type="submit"
+            className="w-full py-3 rounded-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-0.5 transition-all duration-200"
           >
-            <span className="absolute top-6 right-6 text-[48px] leading-none text-primary/20 font-serif select-none">&ldquo;</span>
-            <p className="text-body-md text-on-surface-variant mb-8 italic flex-1">
-              &ldquo;{item.quote}&rdquo;
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center text-base font-bold text-primary shrink-0">
-                {item.name.charAt(0)}
+            Yorumu Gönder
+          </button>
+        </div>
+      </motion.form>
+
+      {/* Yorumlar listesi */}
+      {reviews.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reviews.map((review, i) => (
+            <motion.div
+              key={i}
+              className="glass p-6 rounded-3xl border border-white/5 flex flex-col"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08, duration: 0.4 }}
+            >
+              <span className="text-[40px] leading-none text-primary/20 font-serif select-none mb-2">&ldquo;</span>
+              <p className="text-body-md text-on-surface-variant italic flex-1 mb-6">
+                {review.message}
+              </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center text-sm font-bold text-primary shrink-0">
+                    {review.name.charAt(0).toUpperCase()}
+                  </div>
+                  <p className="text-on-surface font-semibold text-sm">{review.name}</p>
+                </div>
+                <p className="text-on-surface-variant text-xs">{review.date}</p>
               </div>
-              <div>
-                <p className="text-on-surface font-semibold text-sm">{item.name}</p>
-                <p className="text-on-surface-variant text-xs">{item.title}</p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

@@ -15,12 +15,9 @@ export default function Footer() {
           <p className="text-body-md text-on-surface-variant leading-relaxed">
             Yapay Zeka Otomasyon Ajansı. Geleceği kodluyor, işletmeleri özgürleştiriyoruz.
           </p>
-          <div className="mt-5 space-y-2">
+          <div className="mt-5">
             <a href={CONTACT.emailLink} className="flex items-center gap-2 text-label-sm text-on-surface-variant hover:text-primary transition-colors">
               {CONTACT.email}
-            </a>
-            <a href={CONTACT.phoneLink} className="flex items-center gap-2 text-label-sm text-on-surface-variant hover:text-primary transition-colors">
-              {CONTACT.phone}
             </a>
           </div>
         </div>

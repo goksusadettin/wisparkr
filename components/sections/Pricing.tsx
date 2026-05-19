@@ -38,12 +38,7 @@ export default function Pricing() {
               </div>
             )}
 
-            <h4 className="text-[24px] font-semibold text-on-surface mb-4">{tier.name}</h4>
-
-            <div className="flex items-baseline mb-8">
-              <span className="text-4xl font-bold text-on-surface">{tier.price}</span>
-              <span className="text-on-surface-variant text-sm ml-2">{tier.period}</span>
-            </div>
+            <h4 className="text-[24px] font-semibold text-on-surface mb-8">{tier.name}</h4>
 
             <ul className="space-y-4 mb-10 flex-1">
               {tier.features.map((feature) => (
