@@ -121,7 +121,7 @@ export default function ROICalculator() {
           <div className="glass border border-primary/20 rounded-2xl p-5 flex items-start gap-3">
             <TrendingUp size={20} className="text-primary shrink-0 mt-0.5" />
             <p className="text-on-surface-variant text-sm leading-relaxed">
-              Otomasyon, tekrar eden işlerin <span className="text-primary font-semibold">%70'ini</span> ortadan kaldırır. Bu hesaplama gerçek müşteri verilerine dayanmaktadır.
+              Otomasyon, tekrar eden işlerin <span className="text-primary font-semibold">%70&apos;ini</span> ortadan kaldırır. Bu hesaplama gerçek müşteri verilerine dayanmaktadır.
             </p>
           </div>
 
