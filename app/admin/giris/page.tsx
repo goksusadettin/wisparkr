@@ -19,7 +19,11 @@ export default function AdminLoginPage() {
 
     try {
       const supabase = createClient();
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const loginPromise = supabase.auth.signInWithPassword({ email, password });
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("Bağlantı zaman aşımı (10s) — Supabase'e ulaşılamıyor")), 10000)
+      );
+      const { data, error } = await Promise.race([loginPromise, timeoutPromise]);
 
       if (error) {
         setError(`Hata: ${error.message}`);
