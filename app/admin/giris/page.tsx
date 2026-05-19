@@ -26,7 +26,7 @@ export default function AdminLoginPage() {
       return;
     }
 
-    window.location.href = "/admin";
+    window.location.replace("/admin");
   };
 
   return (
