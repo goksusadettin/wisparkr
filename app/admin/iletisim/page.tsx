@@ -4,7 +4,7 @@ import AdminShell from "@/components/admin/AdminShell";
 import ContactTable from "@/components/admin/ContactTable";
 
 export default async function AdminContactPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/admin/giris");
 

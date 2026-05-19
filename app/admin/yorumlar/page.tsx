@@ -4,7 +4,7 @@ import AdminShell from "@/components/admin/AdminShell";
 import ReviewsTable from "@/components/admin/ReviewsTable";
 
 export default async function AdminReviewsPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/admin/giris");
 
