@@ -17,7 +17,16 @@ export default function FAQ() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-h2-mobile md:text-h2 text-on-surface">Sıkça Sorulan Sorular</h2>
+        <h2 className="text-h2-mobile md:text-h2 text-on-surface mb-4">Sıkça Sorulan Sorular</h2>
+        <p className="text-body-md text-on-surface-variant">
+          Aradığınız cevabı bulamadınız mı?{" "}
+          <a href="https://wa.me/905311053295" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            WhatsApp
+          </a>
+          {" "}veya{" "}
+          <a href="/iletisim" className="text-primary hover:underline">iletişim formundan</a>
+          {" "}bize yazın, 1 saat içinde dönelim.
+        </p>
       </motion.div>
 
       <div className="space-y-4">

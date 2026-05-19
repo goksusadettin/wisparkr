@@ -72,13 +72,31 @@ function ContactForm() {
         <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
           <Check size={40} className="text-green-400" />
         </div>
-        <h3 className="text-h2-mobile text-on-surface mb-3">Mesajınız Alındı!</h3>
-        <p className="text-body-md text-on-surface-variant mb-8 max-w-md">
-          En geç 24 saat içinde sizinle iletişime geçeceğiz. Acil durumlar için WhatsApp&apos;ı kullanabilirsiniz.
-        </p>
-        <button onClick={() => setStatus("idle")} className="btn-ghost px-8 py-3">
-          Yeni Mesaj Gönder
-        </button>
+        <h3 className="text-h2-mobile text-on-surface mb-4">Teşekkürler! Mesajınızı aldık.</h3>
+        <div className="space-y-2 mb-8">
+          <p className="text-body-md text-on-surface-variant">📞 1 saat içinde size geri döneceğiz.</p>
+          <p className="text-body-md text-on-surface-variant">
+            💬 Acil durumda{" "}
+            <a href={CONTACT.whatsappLink} target="_blank" rel="noopener noreferrer" className="text-[#25D366] font-semibold hover:underline">
+              WhatsApp&apos;tan
+            </a>
+            {" "}da ulaşabilirsiniz.
+          </p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a
+            href={CONTACT.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white font-semibold hover:bg-[#20bd5a] transition-colors"
+          >
+            <MessageCircle size={16} />
+            WhatsApp&apos;tan Yaz
+          </a>
+          <button onClick={() => setStatus("idle")} className="btn-ghost px-6 py-3">
+            Yeni Mesaj Gönder
+          </button>
+        </div>
       </div>
     );
   }
