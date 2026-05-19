@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Check, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, MessageCircle, Clock } from "lucide-react";
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { CONTACT } from "@/lib/constants";
 
@@ -171,6 +171,14 @@ export default function IletisimPage() {
         </div>
 
         <div className="max-w-container-max mx-auto px-gutter">
+          {/* Yanıt garantisi banner */}
+          <div className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-5 py-4 mb-10">
+            <Clock size={18} className="text-emerald-400 shrink-0" />
+            <p className="text-emerald-300 text-sm">
+              <span className="font-semibold">Mesai saatleri içinde 1 saat,</span> hafta sonu maksimum 6 saatte dönüyoruz.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <motion.div
               className="space-y-8"

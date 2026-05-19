@@ -143,6 +143,26 @@ export const FAQ_ITEMS = [
     question: "Kurulum sonrası destek veriyor musunuz?",
     answer: "Evet, tüm paketlerimizde kurulum sonrası destek dahildir. 7/24 teknik destek, aylık bakım güncellemeleri ve performans raporları ile yanınızdayız.",
   },
+  {
+    question: "Sözleşme şart mı, deneme süresi var mı?",
+    answer: "Proje bazlı çalışmalarımızda sözleşme yapıyoruz ancak uzun vadeli taahhüt şartımız yok. İlk projenizde memnun kalmazsanız ücret iadesi politikamız mevcuttur. Detayları görüşme sırasında konuşuyoruz.",
+  },
+  {
+    question: "Sadece İstanbul'da mı hizmet veriyorsunuz?",
+    answer: "Hayır, tüm Türkiye genelinde ve yurt dışında uzaktan hizmet veriyoruz. Tüm süreç online olarak yürütülebilir; toplantılar video konferans üzerinden gerçekleştirilir.",
+  },
+  {
+    question: "Mevcut sistemlerimi değiştirmem gerekecek mi?",
+    answer: "Hayır. Mevcut altyapınızın üzerine entegrasyon yapıyoruz. Kullandığınız CRM, e-ticaret platformu veya muhasebe yazılımı ne olursa olsun, sistemlerinizi değiştirmeden otomasyon ekliyoruz.",
+  },
+  {
+    question: "Otomasyondan beklediğim sonucu alamazsam ne olur?",
+    answer: "Proje öncesinde net hedefler belirliyoruz. Belirlenen KPI'lara ulaşılamazsa optimizasyon çalışmalarını ek ücret almadan yapıyoruz. Başarınız bizim başarımız.",
+  },
+  {
+    question: "Hangi sektörlere hizmet veriyorsunuz?",
+    answer: "E-ticaret, perakende, hizmet sektörü, gayrimenkul, sağlık, eğitim, lojistik ve SaaS şirketleri başta olmak üzere her sektörde çalışıyoruz. Sektörünüze özel otomasyon senaryoları geliştiriyoruz.",
+  },
 ];
 
 export const TESTIMONIALS = [

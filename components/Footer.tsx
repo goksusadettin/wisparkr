@@ -1,11 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Twitter, Youtube, ArrowRight } from "lucide-react";
 import { CONTACT, SOCIAL } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="relative w-full pt-section-gap pb-8 bg-surface-dim border-t border-outline-variant/20">
+    <>
+      {/* Footer üstü CTA bandı */}
+      <div className="bg-gradient-to-r from-blue-900/60 to-purple-900/60 border-y border-white/10">
+        <div className="max-w-container-max mx-auto px-gutter py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <p className="text-on-surface text-lg font-medium max-w-xl">
+            İşinizi otomatikleştirmek için 30 dakika ayırabilir misiniz?{" "}
+            <span className="text-primary">Ücretsiz keşif görüşmesi</span> planlayalım.
+          </p>
+          <Link
+            href="/iletisim"
+            className="shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-8 py-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/20 hover:-translate-y-0.5 transition-all"
+          >
+            Hemen Görüşme Talep Et <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
+
+      <footer className="relative w-full pt-section-gap pb-8 bg-surface-dim border-t border-outline-variant/20">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max mx-auto">
         <div>
           <Link href="/" className="flex items-center gap-2.5 mb-6 hover:opacity-90 transition-opacity w-fit">
@@ -94,6 +111,7 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-    </footer>
+      </footer>
+    </>
   );
 }

@@ -125,7 +125,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
         >
           <Link
             href="/iletisim"
@@ -143,6 +143,21 @@ export default function Hero() {
 
         <motion.div
           custom={5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-16 text-sm text-on-surface-variant/70"
+        >
+          {["Ücretsiz Keşif Görüşmesi", "Bütçeye Özel Teklif", "1 Saat Yanıt Garantisi"].map((item) => (
+            <span key={item} className="flex items-center gap-2">
+              <span className="text-primary">✓</span>
+              {item}
+            </span>
+          ))}
+        </motion.div>
+
+        <motion.div
+          custom={6}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
