@@ -38,6 +38,33 @@ export default function Hero() {
       <div className="glow-sphere w-[500px] h-[500px] bg-primary top-[-100px] left-[-100px]" />
       <div className="glow-sphere w-[400px] h-[400px] bg-secondary bottom-[-50px] right-[-50px]" />
 
+      {/* Yüzen partiküller */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(18)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: `${[2, 3, 2, 4, 2, 3, 2, 3, 2, 4, 2, 3, 2, 3, 2, 4, 2, 3][i]}px`,
+              height: `${[2, 3, 2, 4, 2, 3, 2, 3, 2, 4, 2, 3, 2, 3, 2, 4, 2, 3][i]}px`,
+              left: `${[8, 15, 25, 35, 45, 55, 65, 75, 85, 92, 20, 40, 60, 80, 30, 50, 70, 90][i]}%`,
+              top: `${[20, 40, 15, 60, 30, 70, 25, 50, 35, 55, 80, 10, 45, 65, 75, 85, 20, 40][i]}%`,
+              background: i % 3 === 0 ? "rgba(99,102,241,0.6)" : i % 3 === 1 ? "rgba(168,85,247,0.5)" : "rgba(6,182,212,0.5)",
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 3 + (i % 4),
+              repeat: Infinity,
+              delay: i * 0.3,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
       <div className="relative z-10 text-center max-w-4xl mx-auto w-full">
         <motion.div
           custom={0}
