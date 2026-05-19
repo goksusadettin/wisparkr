@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
-import CookieBanner from "@/components/CookieBanner";
 import PageTracker from "@/components/PageTracker";
 
 export const metadata: Metadata = {
@@ -46,11 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="tr" className="dark">
       <body className="bg-[#0A0A0F] text-on-surface antialiased selection:bg-primary/30">
         <PageTracker />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppFloat />
-        <CookieBanner />
+        {children}
       </body>
     </html>
   );
