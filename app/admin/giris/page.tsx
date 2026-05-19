@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import Image from "next/image";
 
@@ -10,7 +9,6 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,14 +17,10 @@ export default function AdminLoginPage() {
 
     try {
       const supabase = createClient();
-      const loginPromise = supabase.auth.signInWithPassword({ email, password });
-      const timeoutPromise = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error("Bağlantı zaman aşımı (10s) — Supabase'e ulaşılamıyor")), 10000)
-      );
-      const { data, error } = await Promise.race([loginPromise, timeoutPromise]);
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
       if (error) {
-        setError(`Hata: ${error.message}`);
+        setError("E-posta veya şifre hatalı.");
         setLoading(false);
         return;
       }
@@ -38,8 +32,8 @@ export default function AdminLoginPage() {
       }
 
       window.location.replace("/admin");
-    } catch (err: unknown) {
-      setError(`Beklenmeyen hata: ${err instanceof Error ? err.message : String(err)}`);
+    } catch {
+      setError("Sunucuya bağlanılamadı, lütfen tekrar deneyin.");
       setLoading(false);
     }
   };
